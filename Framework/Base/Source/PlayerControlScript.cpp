@@ -135,7 +135,7 @@ void PlayerControlScript::Update(double deltaTime) {
 				break;
 			case PLAYER_FORM::FORM_BOWSIR:
 				ShootMeatball();
-				fireRate = 3.0f;
+				fireRate = 7.0f;
 				break;
 		}		
 		timeToFire = 1.0 / fireRate;

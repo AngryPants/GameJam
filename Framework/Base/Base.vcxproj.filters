@@ -61,12 +61,6 @@
     <ClCompile Include="Source\Texture.cpp">
       <Filter>Source Files\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntityBase.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntityManager.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Transform.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -132,6 +126,12 @@
     </ClCompile>
     <ClCompile Include="Source\B_Meatball_Script.cpp">
       <Filter>Source Files\Scripts\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\E_BowsirScript.cpp">
+      <Filter>Source Files\Scripts\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\E_OctomanScript.cpp">
+      <Filter>Source Files\Scripts\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,14 +210,8 @@
     <ClInclude Include="Source\TextureList.h">
       <Filter>Header Files\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EntityBase.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Typedef.h">
       <Filter>Header Files\Others</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EntityManager.h">
-      <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneTest.h">
       <Filter>Header Files\Test</Filter>
@@ -318,6 +312,12 @@
     <ClInclude Include="Source\B_Meatball_Script.h">
       <Filter>Header Files\Script\Bullets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\E_BowsirScript.h">
+      <Filter>Header Files\Script\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\E_OctomanScript.h">
+      <Filter>Header Files\Script\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -353,9 +353,6 @@
     <Filter Include="Header Files\Scene">
       <UniqueIdentifier>{abd1aa03-43c9-4b38-a516-c90d0bff6e83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entity">
-      <UniqueIdentifier>{f2c21d18-4475-4dd7-8753-d528f2d07f3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Texture">
       <UniqueIdentifier>{02e80f52-fb51-4f50-9119-7a1155c63cad}</UniqueIdentifier>
     </Filter>
@@ -379,9 +376,6 @@
     </Filter>
     <Filter Include="Source Files\Mesh">
       <UniqueIdentifier>{825a4534-62cc-4912-9c4b-92598af7c23d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity">
-      <UniqueIdentifier>{0fb46dd4-e31e-4239-acd1-f85e3010a866}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GameObject">
       <UniqueIdentifier>{bd427273-2103-4505-b44d-1b6b8e35a64d}</UniqueIdentifier>
@@ -425,9 +419,6 @@
     <Filter Include="Header Files\Component\Graphics">
       <UniqueIdentifier>{8f8f7d7b-0d02-4418-be21-fafb1e4cbdec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameJam">
-      <UniqueIdentifier>{c7b50783-ecf2-4598-8e30-baf5a911300b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Script\Bullets">
       <UniqueIdentifier>{08ecd432-0222-492c-8839-55e9cab5e09e}</UniqueIdentifier>
     </Filter>
@@ -448,6 +439,15 @@
     </Filter>
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{8020bce8-bbb6-4af1-b7c5-50ce94ae5721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Script\Enemy">
+      <UniqueIdentifier>{aaf15e31-5cff-4eb3-a4eb-dd372bb82d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\Enemy">
+      <UniqueIdentifier>{759f9c14-9f6d-4985-8934-a99006f35644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameJam">
+      <UniqueIdentifier>{c7b50783-ecf2-4598-8e30-baf5a911300b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

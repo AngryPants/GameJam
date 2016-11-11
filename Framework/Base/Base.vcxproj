@@ -27,8 +27,8 @@
     <ClCompile Include="Source\Controller_Gamepad.cpp" />
     <ClCompile Include="Source\Controller_Keyboard.cpp" />
     <ClCompile Include="Source\Controller_Mouse.cpp" />
-    <ClCompile Include="Source\EntityBase.cpp" />
-    <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\E_BowsirScript.cpp" />
+    <ClCompile Include="Source\E_OctomanScript.cpp" />
     <ClCompile Include="Source\GameObjectManager.cpp" />
     <ClCompile Include="Source\GraphicsManager.cpp" />
     <ClCompile Include="Source\GraphicsUtility.cpp" />
@@ -71,6 +71,8 @@
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\ComponentManager.h" />
     <ClInclude Include="Source\CubeScript.h" />
+    <ClInclude Include="Source\E_BowsirScript.h" />
+    <ClInclude Include="Source\E_OctomanScript.h" />
     <ClInclude Include="Source\PlayerControlScript.h" />
     <ClInclude Include="Source\HealthComponent.h" />
     <ClInclude Include="Source\IDGenerator.h" />
@@ -78,8 +80,6 @@
     <ClInclude Include="Source\Controller_Keyboard.h" />
     <ClInclude Include="Source\Controller_Mouse.h" />
     <ClInclude Include="Source\GameObject.h" />
-    <ClInclude Include="Source\EntityBase.h" />
-    <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\GameObjectFactory.h" />
     <ClInclude Include="Source\GameObjectManager.h" />
     <ClInclude Include="Source\GraphicsManager.h" />

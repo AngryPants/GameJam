@@ -13,6 +13,8 @@
 #include "B_Banana_Script.h"
 #include "B_Cookie_Script.h"
 #include "B_Meatball_Script.h"
+#include "E_BowsirScript.h"
+#include "E_OctomanScript.h"
 
 //Include Components
 #include "Camera.h"
@@ -111,13 +113,44 @@ public:
 	static GameObject& CreateMeatball(const string& space, const string& name = "Meatball") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Player Bullet";
-		go.AddComponent<Transform>().SetScale(0.5f, 0.5f, 0.5f);
+		go.AddComponent<Transform>().SetScale(0.3f, 0.3f, 0.3f);
 		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Meatball");
 		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Meatball", "Image//Game_Jam//Projectile//Projectile_Meatball.tga");
 		go.GetComponent<MeshRenderer>().lightEnabled = false;
 
 		B_Meatball_Script* script = new B_Meatball_Script();
 		script->bullet = &go;
+		go.scripts[0] = script;
+
+		return go;
+	}
+
+	static GameObject& CreateBowsir(const string& space, GameObject* player, const string& name = "Bowsir") {
+		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
+		go.tag = "Enemy";
+		go.AddComponent<Transform>();
+		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Bowsir");
+		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Bowsir", "Image//Game_Jam//Projectile//Projectile_Meatball.tga");
+		go.GetComponent<MeshRenderer>().lightEnabled = false;
+
+		E_BowsirScript* script = new E_BowsirScript();
+		script->bowsir = &go;
+		script->player = player;
+		go.scripts[0] = script;
+
+		return go;
+	}
+
+	static GameObject& CreateOctoman(const string& space, const string& name = "Octoman") {
+		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
+		go.tag = "Enemy";
+		go.AddComponent<Transform>();
+		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Octoman");
+		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Projectile//Projectile_Meatball.tga");
+		go.GetComponent<MeshRenderer>().lightEnabled = false;
+
+		E_OctomanScript* script = new E_OctomanScript();
+		script->octoman = &go;
 		go.scripts[0] = script;
 
 		return go;

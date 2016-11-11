@@ -41,6 +41,10 @@ void SceneGJ::InitGameObjects() {
 	backgroundScript->gameObject = background;
 
 	player = &GameObjectFactory::CreatePlayer(name);
+	player->GetComponent<Transform>().SetPosition(0, -5, 0);
+
+	GameObjectFactory::CreateBowsir(name, player);
+	GameObjectFactory::CreateOctoman(name);
 }
 
 void SceneGJ::Init() {
