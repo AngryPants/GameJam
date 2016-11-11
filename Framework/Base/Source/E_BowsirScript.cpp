@@ -13,6 +13,9 @@ E_BowsirScript::E_BowsirScript() {
 	player = nullptr;
 	movementSpeed = 2.0f;
 	reseted = false;
+	startCounting = false;
+	v_timer.clear();
+	vt = v_timer.begin();
 }
 
 E_BowsirScript::~E_BowsirScript() {
@@ -31,6 +34,19 @@ void E_BowsirScript::Update(double deltaTime) {
 		Reset();
 	}
 	
+	if (startCounting == true) {
+		*vt -= deltaTime;
+		if (*vt <= 0.0) {
+			*vt = 0.0;
+
+			if (vt != v_timer.end()- 1) {
+				vt++;
+			}
+			startCounting = false;
+			Reset();
+		}
+	}
+
 	Transform& enemyTransform = bowsir->GetComponent<Transform>();
 	if (target.LengthSquared() > Math::EPSILON) {
 		target.Normalize();
@@ -54,4 +70,9 @@ void E_BowsirScript::Reset() {
 	}
 	enemyTransform.SetRotation(0, 0, Math::RadianToDegree(atan2(target.y, target.x)));
 	reseted = true;
+}
+
+void E_BowsirScript::Deactivate() {
+	bowsir->GetComponent<Transform>().isActive = false;
+	startCounting = true;
 }

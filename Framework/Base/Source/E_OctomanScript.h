@@ -12,6 +12,9 @@ public:
 	float movementSpeed;
 	float moveRotation;
 	bool reseted;
+	bool startCounting;
+	vector<double>v_timer;
+	vector<double>::iterator vt;
 
 	GameObject* octoman;
 
