@@ -62,7 +62,7 @@ void E_OctomanScript::Reset() {
 }
 
 void E_OctomanScript::Deactivate() {
-	bowsir->GetComponent<Transform>().isActive = false;
+	octoman->GetComponent<Transform>().isActive = false;
 	startCounting = true;
 }
 

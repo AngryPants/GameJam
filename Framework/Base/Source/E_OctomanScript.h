@@ -2,6 +2,9 @@
 #define E_OCTOMANSCRIPT_H
 
 #include "Script.h"
+#include <vector>
+
+using std::vector;
 
 class GameObject;
 
