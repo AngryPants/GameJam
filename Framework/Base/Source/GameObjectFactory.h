@@ -53,8 +53,8 @@ public:
 	static GameObject& CreatePlayer(const string& space, const string& name = "Player") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.AddComponent<Transform>().SetScale(0.5, 0.5, 0.5);
-		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("go", 4, 4));
-		Animation animation(4, 4, 3, 2, true, 0.5, true);
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 4, 4));
+		Animation animation(4, 4, 0, 15, true, 0.5, true);
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
 		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
 		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Character//Sprite_Octoman.tga");
@@ -145,9 +145,11 @@ public:
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Enemy";
 		go.AddComponent<Transform>();
-		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Octoman");
-		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Projectile//Projectile_Meatball.tga");
-		go.GetComponent<MeshRenderer>().lightEnabled = false;
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 4, 4));
+		Animation animation(4, 4, 3, 2, true, 0.5, true);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
+		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
+		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Character//Sprite_Octoman.tga");
 
 		E_OctomanScript* script = new E_OctomanScript();
 		script->octoman = &go;

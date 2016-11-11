@@ -65,4 +65,3 @@ void E_OctomanScript::Deactivate() {
 	octoman->GetComponent<Transform>().isActive = false;
 	startCounting = true;
 }
-
