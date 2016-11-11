@@ -119,7 +119,7 @@ void RenderSystem::Render(const string& space) {
 			modelStack.Rotate(transform.GetRotation().x, 1, 0, 0);
 			modelStack.Rotate(transform.GetRotation().z, 0, 0, 1);
 			modelStack.Scale(transform.GetScale().x, transform.GetScale().y, transform.GetScale().z);
-			RenderHelper::GetInstance().RenderMesh(*spriteRenderer.GetSpriteAnimation(), spriteRenderer.textureList, spriteRenderer.enableLight);
+			RenderHelper::GetInstance().RenderMesh(*spriteRenderer.GetSpriteAnimation(), spriteRenderer.textureList, spriteRenderer.lightEnabled);
 		modelStack.PopMatrix();
 	}
 

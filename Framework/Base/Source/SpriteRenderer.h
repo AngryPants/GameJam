@@ -20,7 +20,7 @@ private:
 public:
 	//Variable(s)	
 	TextureList textureList;
-	bool enableLight;
+	bool lightEnabled;
 
 	//Constructor(s) & Destructor
 	SpriteRenderer(GameObject& gameObject);
@@ -33,6 +33,7 @@ public:
 	void RemoveAnimation(const string& animName);
 	void RemoveAllAnimation();
 	const string& GetCurrentAnimation() const;
+	Animation* GetAnimation(const string& animName);
 	void SetSpriteAnimation(SpriteAnimation& mesh);
 	void RemoveSpriteAnimation();
 	SpriteAnimation* GetSpriteAnimation();

@@ -128,10 +128,15 @@ public:
 	static GameObject& CreateBowsir(const string& space, GameObject* player, const string& name = "Bowsir") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Enemy";
-		go.AddComponent<Transform>();
-		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Bowsir");
-		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Bowsir", "Image//Game_Jam//Projectile//Projectile_Meatball.tga");
-		go.GetComponent<MeshRenderer>().lightEnabled = false;
+		//go.AddComponent<Transform>();
+		go.AddComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Bowsir", "Image//Game_Jam//Character//Sprite_Bowsir.tga");
+		go.GetComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Bowsir", 2, 3));
+		Animation animationLeft(2, 3, 0, 2, true, 0.5, true);
+		Animation animationRight(2, 3, 3, 5, true, 0.5, true);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Move Right", animationRight);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Move Left", animationLeft);
+		go.GetComponent<SpriteRenderer>().SetAnimation("Move Right");
+		go.GetComponent<SpriteRenderer>().lightEnabled = false;
 
 		E_BowsirScript* script = new E_BowsirScript();
 		script->bowsir = &go;
@@ -144,7 +149,7 @@ public:
 	static GameObject& CreateOctoman(const string& space, const string& name = "Octoman") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Enemy";
-		go.AddComponent<Transform>();
+		//go.AddComponent<Transform>();
 		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 4, 4));
 		Animation animation(4, 4, 3, 2, true, 0.5, true);
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);

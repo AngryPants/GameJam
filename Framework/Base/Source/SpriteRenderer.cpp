@@ -4,7 +4,7 @@
 //Constructor(s) & Destructor
 SpriteRenderer::SpriteRenderer(GameObject& gameObject) : Component("Sprite Renderer", gameObject) {
 	mesh = nullptr;
-	enableLight = false;
+	lightEnabled = false;
 }
 
 SpriteRenderer::~SpriteRenderer() {
@@ -33,7 +33,7 @@ void SpriteRenderer::AddAnimation(const string& animName, Animation animation) {
 void SpriteRenderer::SetAnimation(const string& animName) {
 	map<string, Animation>::iterator mapIter = animations.find(animName);
 	if (mapIter != animations.end()) {
-		mesh->animation = &mapIter->second;
+		mapIter->second.Reset(true);
 		currentAnimation = animName;
 	} else {
 		currentAnimation.clear();
@@ -57,6 +57,14 @@ void SpriteRenderer::RemoveAllAnimation() {
 
 const string& SpriteRenderer::GetCurrentAnimation() const {
 	return this->currentAnimation;
+}
+
+Animation* SpriteRenderer::GetAnimation(const string& animName) {
+	map<string, Animation>::iterator mapIter = animations.find(animName);
+	if (mapIter != animations.end()) {
+		return &mapIter->second;
+	}
+	return nullptr;
 }
 
 void SpriteRenderer::SetSpriteAnimation(SpriteAnimation& mesh) {
