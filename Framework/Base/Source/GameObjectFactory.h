@@ -53,10 +53,10 @@ public:
 	static GameObject& CreatePlayer(const string& space, const string& name = "Player") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.AddComponent<Transform>().SetScale(0.5, 0.5, 0.5);
-		go.AddComponent<SpriteRenderer>().mesh = MeshBuilder::GetInstance().GenerateSpriteAnimation("go", 4, 4);
-		Animation octomanAnim(4, 4, 3, 2, true, 0.5, true);
-		go.GetComponent<SpriteRenderer>().animations.insert(std::pair<string, Animation>("Octoman", octomanAnim));
-		go.GetComponent<SpriteRenderer>().mesh->animation = &go.GetComponent<SpriteRenderer>().animations.find("Octoman")->second;
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("go", 4, 4));
+		Animation animation(4, 4, 3, 2, true, 0.5, true);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
+		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
 		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Character//Sprite_Octoman.tga");
 		PlayerControlScript* script = new PlayerControlScript();
 		go.scripts[0] = script;

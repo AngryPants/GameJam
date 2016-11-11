@@ -11,11 +11,15 @@ using std::map;
 
 class SpriteRenderer : public Component {
 	
-public:
+private:
 	//Variable(s)
 	SpriteAnimation* mesh;
+	map<string, Animation> animations;
+	string currentAnimation;
+
+public:
+	//Variable(s)	
 	TextureList textureList;
-	map<string, Animation> animations;	
 	bool enableLight;
 
 	//Constructor(s) & Destructor
@@ -24,7 +28,16 @@ public:
 
 	//Interface
 	void Update(double deltaTime);
-	
+	void AddAnimation(const string& animName, Animation animation);
+	void SetAnimation(const string& animName);
+	void RemoveAnimation(const string& animName);
+	void RemoveAllAnimation();
+	const string& GetCurrentAnimation() const;
+	void SetSpriteAnimation(SpriteAnimation& mesh);
+	void RemoveSpriteAnimation();
+	SpriteAnimation* GetSpriteAnimation();
+	void ClearAll();
+
 };
 
 #endif
