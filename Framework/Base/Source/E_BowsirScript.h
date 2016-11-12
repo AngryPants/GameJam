@@ -26,7 +26,7 @@ public:
 	virtual ~E_BowsirScript();
 
 	//Interface Function(s)
-	virtual void Update(const double deltaTime);
+	virtual void Update(double deltaTime);
 };
 
 #endif

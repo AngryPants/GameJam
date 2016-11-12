@@ -30,7 +30,7 @@ public:
 	virtual ~E_OctomanScript ();
 
 	//Interface Function(s)
-	virtual void Update(const double deltaTime);
+	virtual void Update(double deltaTime);
 
 };
 

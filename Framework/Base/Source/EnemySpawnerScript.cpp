@@ -22,6 +22,10 @@ void EnemySpawnerScript::Update(double deltaTime) {
 					GameObjectFactory::CreateBowsir(spawner->GetSpace(), player);
 					break;
 				}
+				case ENEMY_COOKIE_MASTER: {
+					GameObjectFactory::CreateCookieMaster(spawner->GetSpace());
+					break;
+				}
 			}
 			spawnTimer[i] = 0.0f;
 			spawnTimes[i].erase(spawnTimes[i].begin());
