@@ -13,6 +13,8 @@
 
 //Include Components
 #include "SpriteRenderer.h"
+#include "HealthComponent.h"
+#include "MeshRenderer.h"
 
 //Include Scripts
 #include "BackgroundScript.h"
@@ -71,7 +73,9 @@ void SceneGJ::InitGameObjects() {
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(30);
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(35);
 
-	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_COOKIE_MASTER].push_back(5);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_DONKEY_KING].push_back(1);
+
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_COOKIE_MASTER].push_back(1);
 
 	for (int i = 0; i < 4; ++i) {
 		index[i] = nullptr;
@@ -159,6 +163,11 @@ void SceneGJ::InitGameObjects() {
 	score->GetComponent<TextRenderer>().textColor.Set(1, 1, 1);
 	score->AddComponent<Transform>().SetScale(Vector3(0.5, 0.5, 1));
 	score->GetComponent<Transform>().SetPosition(8, 4, 2);
+
+
+	hpBar = MeshBuilder::GetInstance().GenerateQuad("HP Bar", Color(1, 0, 0));
+	hpText = MeshBuilder::GetInstance().GenerateText("HP Text", 16, 16);
+	textureList.textureArray[0];
 }
 
 void SceneGJ::Init() {
@@ -188,9 +197,9 @@ void SceneGJ::Update(double deltaTime) {
 	//cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
 	//cout << "FPS: " << to_string(1.0/deltaTime) << endl;
 	//Close da app
-	//if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
-	//	Application::GetInstance().Quit();
-	//}
+	if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
+		Application::GetInstance().Quit();
+	}
 }
 
 void SceneGJ::Render() {
@@ -198,10 +207,17 @@ void SceneGJ::Render() {
 	GraphicsManager::GetInstance().Enable<GraphicsManager::MODE::DEPTH_TEST>();
 
 	RenderSystem::GetInstance().Render(name);
-
+	
 	//Render Entities UI
 	GraphicsManager::GetInstance().Disable<GraphicsManager::MODE::DEPTH_TEST>();
 	GraphicsManager::GetInstance().SetToUI();
+	
+	MS& modelStack = GraphicsManager::GetInstance().modelStack;
+	modelStack.PushMatrix();
+		modelStack.Translate(7.0f, -8, 1);
+		modelStack.Scale(Math::Max(0.1f, 5.0f * static_cast<float>(player->GetComponent<HealthComponent>().GetHealth()) / static_cast<float>(player->GetComponent<HealthComponent>().GetMaxHealth())), 1.0f, 1);
+		RenderHelper::GetInstance().RenderMesh(*hpBar, false);
+	modelStack.PopMatrix();
 
 	RenderSystem::GetInstance().RenderUI(name);
 }

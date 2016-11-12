@@ -26,6 +26,10 @@ void EnemySpawnerScript::Update(double deltaTime) {
 					GameObjectFactory::CreateCookieMaster(spawner->GetSpace());
 					break;
 				}
+				case ENEMY_DONKEY_KING: {
+					GameObjectFactory::CreateDonkeyKing(spawner->GetSpace(), player);
+					break;
+				}
 			}
 			spawnTimer[i] = 0.0f;
 			spawnTimes[i].erase(spawnTimes[i].begin());

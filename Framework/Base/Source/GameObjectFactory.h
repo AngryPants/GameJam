@@ -19,6 +19,7 @@
 #include "EnemySpawnerScript.h"
 #include "E_CookieMaster.h"
 #include "B_Spinach_Script.h"
+#include "E_Script_DonkeyKing.h"
 
 //Include Components
 #include "Camera.h"
@@ -65,7 +66,9 @@ public:
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
 		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
 		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Player", "Image//Game_Jam//Character//Sprite_Player.tga");
-		go.AddComponent<HealthComponent>().SetHealth(40);
+		go.AddComponent<HealthComponent>().SetMaxHealth(100);
+		go.GetComponent<HealthComponent>().SetHealth(100);
+		go.AddComponent<SphereCollider>().SetRadius(0.5f);
 		PlayerControlScript* script = new PlayerControlScript();
 		go.scripts[0] = script;
 		script->player = &go;
@@ -162,7 +165,8 @@ public:
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Enemy";
 		//go.AddComponent<Transform>();
-		go.AddComponent<HealthComponent>().SetHealth(10);
+		go.AddComponent<HealthComponent>().SetMaxHealth(10);
+		go.GetComponent<HealthComponent>().SetHealth(10);
 		go.AddComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Bowsir", "Image//Game_Jam//Character//Sprite_Bowsir.tga");
 		go.GetComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Bowsir", 2, 3));
 		Animation animationLeft(2, 3, 0, 2, true, 0.5, true);
@@ -186,6 +190,7 @@ public:
 		go.tag = "Enemy";
 		//go.AddComponent<Transform>();
 		go.AddComponent<HealthComponent>().SetHealth(5);
+		go.GetComponent<HealthComponent>().SetMaxHealth(5);
 		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Octoman", 4, 4));
 		Animation animation(4, 4, 3, 2, true, 0.5, true);
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
@@ -238,6 +243,28 @@ public:
 		GameObject& go = GameObjectFactory::CreateEmpty(space);
 		EnemySpawnerScript* script = new EnemySpawnerScript();
 		script->spawner = &go;
+		script->player = player;
+		go.scripts[0] = script;
+
+		return go;
+	}
+	
+	static GameObject& CreateDonkeyKing(const string& space, GameObject* player, const string& name = "Donkey King") {
+		GameObject& go = GameObjectFactory::CreateEmpty(space);
+		go.tag = "Enemy";
+		go.AddComponent<HealthComponent>().SetMaxHealth(20);
+		go.GetComponent<HealthComponent>().SetHealth(20);
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Donkey King", 1, 2));
+		Animation animation(1, 2, 0, 1, true, 0.1, true);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
+		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
+		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Donkey King", "Image//Game_Jam//Character//Sprite_DonkeyKing.tga");
+		float radius = 1.0f;
+		go.AddComponent<Transform>().Scale(radius * 2.0f);
+		go.GetComponent<Transform>().SetPosition(0, 20, 0);
+		go.AddComponent<SphereCollider>().SetRadius(radius);
+		ScriptDonkeyKing* script = new ScriptDonkeyKing();
+		script->donkeyKing = &go;
 		script->player = player;
 		go.scripts[0] = script;
 

@@ -2,8 +2,10 @@
 #define SCENE_GJ_H
 
 #include "Scene.h"
+#include "TextureList.h"
 
 class GameObject;
+class Mesh;
 
 class SceneGJ : public Scene {
 
@@ -22,6 +24,12 @@ private:
 	GameObject* index[4];
 	GameObject* scoreText;
 	GameObject* score;
+
+	Mesh* hpBar;
+	Mesh* hpText;
+	TextureList textureList;
+
+
 	//Private Function(s)
 	void InitGameObjects();
 

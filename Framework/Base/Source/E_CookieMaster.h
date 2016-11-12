@@ -16,7 +16,7 @@ private:
 	float lifeTime;
 	float timeToShoot;
 	float fireRate;
-
+	
 	void Shoot();
 
 public:

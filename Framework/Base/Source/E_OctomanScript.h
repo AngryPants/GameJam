@@ -20,6 +20,9 @@ private:
 	float lifeTime;
 	bool initialised;
 
+	float hurtPlayerCooldown;
+	int damage;
+
 public:
 	//Variable(s)	
 	//vector<Vector3>waypoints;
