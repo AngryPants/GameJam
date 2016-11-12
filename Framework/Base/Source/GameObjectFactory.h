@@ -17,6 +17,8 @@
 #include "E_BowsirScript.h"
 #include "E_OctomanScript.h"
 #include "EnemySpawnerScript.h"
+#include "E_CookieMaster.h"
+#include "B_Spinach_Script.h"
 
 //Include Components
 #include "Camera.h"
@@ -57,12 +59,13 @@ public:
 	static GameObject& CreatePlayer(const string& space, const string& name = "Player") {
 		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
 		go.tag = "Player";
-		go.AddComponent<Transform>().SetScale(0.5, 0.5, 0.5);
-		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 4, 4));
-		Animation animation(4, 4, 0, 15, true, 0.5, true);
+		go.AddComponent<Transform>().SetScale(1, 1, 1);
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 2, 4));
+		Animation animation(2, 4, 0, 7, true, 0.5, true);
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
 		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
-		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Octoman", "Image//Game_Jam//Character//Sprite_Octoman.tga");
+		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Player", "Image//Game_Jam//Character//Sprite_Player.tga");
+		go.AddComponent<HealthComponent>().SetHealth(40);
 		PlayerControlScript* script = new PlayerControlScript();
 		go.scripts[0] = script;
 		script->player = &go;
@@ -98,6 +101,23 @@ public:
 		go.GetComponent<MeshRenderer>().lightEnabled = false;
 
 		B_Banana_Script* script = new B_Banana_Script();
+		script->bullet = &go;
+		go.scripts[0] = script;
+
+		return go;
+	}
+
+	static GameObject& CreateSpinach(const string& space, const string& name = "Spinach") {
+		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
+		go.tag = "Bullet Spinach";
+		float radius = 0.2f;
+		go.AddComponent<SphereCollider>().SetRadius(radius);
+		go.AddComponent<Transform>().SetScale(radius * 2.0f, radius * 2.0f, radius * 2.0f);
+		go.AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Spinach");
+		go.GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Spinach", "Image//Game_Jam//Projectile//Projectile_KangKong.tga");
+		go.GetComponent<MeshRenderer>().lightEnabled = false;
+
+		B_Spinach_Script* script = new B_Spinach_Script();
 		script->bullet = &go;
 		go.scripts[0] = script;
 
@@ -166,7 +186,7 @@ public:
 		go.tag = "Enemy";
 		//go.AddComponent<Transform>();
 		go.AddComponent<HealthComponent>().SetHealth(5);
-		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Player", 4, 4));
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Octoman", 4, 4));
 		Animation animation(4, 4, 3, 2, true, 0.5, true);
 		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
 		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
@@ -175,6 +195,27 @@ public:
 
 		E_OctomanScript* script = new E_OctomanScript();
 		script->octoman = &go;
+		go.scripts[0] = script;
+
+		return go;
+	}
+
+	static GameObject& CreateCookieMaster(const string& space, const string& name = "") {
+		GameObject& go = GameObjectManager::GetInstance().CreateGameObject(space, name);
+		go.tag = "Enemy";
+		go.AddComponent<HealthComponent>();
+		go.AddComponent<SpriteRenderer>().SetSpriteAnimation(*MeshBuilder::GetInstance().GenerateSpriteAnimation("Cookie Master", 1, 4));
+		Animation animation(1, 4, 0, 3, true, 0.5, true);
+		go.GetComponent<SpriteRenderer>().AddAnimation("Default", animation);
+		go.GetComponent<SpriteRenderer>().SetAnimation("Default");
+		go.GetComponent<SpriteRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Cookie Master", "Image//Game_Jam//Character//Sprite_CookieMaster.tga");
+		float radius = 1.0f;
+		go.AddComponent<Transform>().Scale(radius * 2.0f);
+		go.GetComponent<Transform>().SetPosition(0, -50, 0);
+		go.AddComponent<SphereCollider>().SetRadius(radius);
+
+		E_Cookie_Master* script = new E_Cookie_Master();
+		script->cookieMaster = &go;
 		go.scripts[0] = script;
 
 		return go;

@@ -65,6 +65,8 @@ void SceneGJ::InitGameObjects() {
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(12);
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(20);
 
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_COOKIE_MASTER].push_back(5);
+
 }
 
 void SceneGJ::Init() {
