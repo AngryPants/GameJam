@@ -91,9 +91,9 @@ void SceneGJ::Update(double deltaTime) {
 	//cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
 	//cout << "FPS: " << to_string(1.0/deltaTime) << endl;
 	//Close da app
-	if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
-		Application::GetInstance().Quit();
-	}
+	//if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
+	//	Application::GetInstance().Quit();
+	//}
 }
 
 void SceneGJ::Render() {

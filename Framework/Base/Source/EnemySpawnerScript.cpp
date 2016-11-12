@@ -12,8 +12,7 @@ void EnemySpawnerScript::Update(double deltaTime) {
 			continue;
 		}
 		spawnTimer[i] += deltaTime;
-		vector<double>::iterator fuckYouIter = spawnTimes[i].begin();
-		if (spawnTimer[i] >= (*fuckYouIter)) {
+		if (spawnTimer[i] >= (*spawnTimes[i].begin())) {
 			switch (i) {
 				case ENEMY_OCTOMAN: {
 					GameObjectFactory::CreateOctoman(spawner->GetSpace());

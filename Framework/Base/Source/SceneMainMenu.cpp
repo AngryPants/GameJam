@@ -10,6 +10,7 @@
 #include "GameObjectFactory.h"
 #include "GameData.h"
 #include "SceneManager.h"
+#include "AudioManager.h"
 
 SceneMainMenu::SceneMainMenu(const string& name) : Scene(name) {
 }
@@ -83,6 +84,8 @@ void SceneMainMenu::Init() {
 	keyDown[1] = false;
 
 	startGame = false;
+
+	AudioManager::GetInstance().PlayAudio2D("Audio//#Music//mainmenu.wav", true);
 }
 
 void SceneMainMenu::Update(double deltaTime) {

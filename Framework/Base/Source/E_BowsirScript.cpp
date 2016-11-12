@@ -7,6 +7,7 @@
 #include "MeshBuilder.h"
 #include "MyMath.h"
 #include "HealthComponent.h"
+#include "GameData.h"
 
 //Constructor(s) & Destructor
 E_BowsirScript::E_BowsirScript() {
@@ -43,6 +44,9 @@ void E_BowsirScript::Update(double deltaTime) {
 		} else {
 			target.Set(1, 0, 0);
 		}
+		float boundaryX = (GameData::GetInstance().worldSizeX + bowsir->GetComponent<Transform>().GetScale().x) * 0.3f;
+		float boundaryY = (GameData::GetInstance().worldSizeY + bowsir->GetComponent<Transform>().GetScale().y) * 0.5f;
+		bowsirTransform.SetPosition(Math::RandFloatMinMax(-boundaryX, boundaryX), boundaryY + (bowsir->GetComponent<Transform>().GetScale().y * 0.5f), 0);
 		bowsirTransform.SetRotation(0, 0, Math::RadianToDegree(atan2(target.y, target.x)));
 	}
 	

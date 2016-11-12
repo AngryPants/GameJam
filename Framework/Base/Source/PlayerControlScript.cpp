@@ -92,9 +92,9 @@ void PlayerControlScript::Update(double deltaTime) {
 	}
 
 	if (playerTransform.GetPosition().y > boundaryY * 0.8f) {
-		playerTransform.SetPosition(playerTransform.GetPosition().x, boundaryY, playerTransform.GetPosition().z);
-	} else if (playerTransform.GetPosition().y < -boundaryY) {
-		playerTransform.SetPosition(playerTransform.GetPosition().x, -boundaryY, playerTransform.GetPosition().z);
+		playerTransform.SetPosition(playerTransform.GetPosition().x, boundaryY * 0.8f, playerTransform.GetPosition().z);
+	} else if (playerTransform.GetPosition().y < -boundaryY * 0.8f) {
+		playerTransform.SetPosition(playerTransform.GetPosition().x, -boundaryY * 0.8f, playerTransform.GetPosition().z);
 	}
 
 	//Form Switching

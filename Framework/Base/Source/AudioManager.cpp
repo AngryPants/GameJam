@@ -31,12 +31,11 @@ bool AudioManager::PlayAudio2D(const string& audioFile, bool looped, float volum
 	if (audioEngine->isCurrentlyPlaying(audioFile.c_str()))
 		return true;
 	
-	ISound* soundPtr = audioEngine->play2D(audioFile.c_str(), looped, false, true);
-	soundPtr->setVolume(volume);
+	ISound* soundPtr = audioEngine->play2D(audioFile.c_str(), looped);
 	if (audioList.find(soundPtr) != audioList.end()) {
 		audioList.insert(soundPtr);
 	}
-	std::cout << audioList.size() << std::endl;
+
 	return true;
 }
 
