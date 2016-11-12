@@ -16,6 +16,8 @@ E_BowsirScript::E_BowsirScript() {
 	movementSpeed = 2.0f;
 	initialised = false;
 	lifeTime = 6.0f;
+	hurtPlayerCooldown = 0.0f;
+	damage = 12;
 }
 
 E_BowsirScript::~E_BowsirScript() {
@@ -49,10 +51,29 @@ void E_BowsirScript::Update(double deltaTime) {
 		bowsirTransform.SetPosition(Math::RandFloatMinMax(-boundaryX, boundaryX), boundaryY + (bowsir->GetComponent<Transform>().GetScale().y * 0.5f), 0);
 		bowsirTransform.SetRotation(0, 0, Math::RadianToDegree(atan2(target.y, target.x)));
 	}
-	
-	bowsirTransform.Translate(target * deltaTime);
-	
-	if (bowsir->GetComponent<HealthComponent>().IsAlive() == false) {
+	lifeTime -= deltaTime;
+
+	if (lifeTime > 0.0f) {
+		bowsirTransform.Translate(target * deltaTime);
+		if (hurtPlayerCooldown > 0.0f) {
+			hurtPlayerCooldown -= deltaTime;
+		}
+		if (hurtPlayerCooldown <= 0.0f) {
+			SphereCollider& collider = bowsir->GetComponent<SphereCollider>();
+			for (vector<GameObject*>::iterator vecIter = collider.info.gameObjects.begin(); vecIter != collider.info.gameObjects.end(); ++vecIter) {
+				GameObject* go = *vecIter;
+				if (go->tag == "Player" && go->HasComponent<HealthComponent>() && go->GetComponent<HealthComponent>().IsAlive()) {
+					go->GetComponent<HealthComponent>().TakeDamage(damage);
+					hurtPlayerCooldown = 2.0f;
+				}				
+			}			
+		}
+
+		if (bowsir->GetComponent<HealthComponent>().IsAlive() == false) {
+			bowsir->Destroy();
+		}
+	} else {
 		bowsir->Destroy();
-	}
+	}	
+		
 }

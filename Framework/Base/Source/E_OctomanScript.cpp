@@ -15,6 +15,8 @@ E_OctomanScript::E_OctomanScript() {
 	moveRotation = 0.f;	
 	lifeTime = 10.0f;
 	initialised = false;
+	hurtPlayerCooldown = 0.0f;
+	damage = 12;
 }
 
 E_OctomanScript::~E_OctomanScript() {
@@ -36,6 +38,7 @@ void E_OctomanScript::Update(double deltaTime) {
 		float boundaryY = (GameData::GetInstance().worldSizeY + octoman->GetComponent<Transform>().GetScale().y) * 0.5f;
 		octoman->GetComponent<Transform>().SetRotation(0, 0, -90);
 		octoman->GetComponent<Transform>().SetPosition(Math::RandFloatMinMax(-boundaryX, boundaryX), boundaryY + (octoman->GetComponent<Transform>().GetScale().y * 0.5f), 0);
+		octoman->GetComponent<HealthComponent>().SetMaxHealth(10);
 		octoman->GetComponent<HealthComponent>().SetHealth(10);
 	}
 	if (lifeTime > 0.0f) {
@@ -57,6 +60,19 @@ void E_OctomanScript::Update(double deltaTime) {
 
 		if (octoman->GetComponent<HealthComponent>().IsAlive() == false) {
 			octoman->Destroy();
+		}
+		if (hurtPlayerCooldown > 0.0f) {
+			hurtPlayerCooldown -= deltaTime;
+		}
+		if (hurtPlayerCooldown <= 0.0f) {
+			SphereCollider& collider = octoman->GetComponent<SphereCollider>();
+			for (vector<GameObject*>::iterator vecIter = collider.info.gameObjects.begin(); vecIter != collider.info.gameObjects.end(); ++vecIter) {
+				GameObject* go = *vecIter;
+				if (go->tag == "Player" && go->HasComponent<HealthComponent>() && go->GetComponent<HealthComponent>().IsAlive()) {
+					go->GetComponent<HealthComponent>().TakeDamage(damage);
+					hurtPlayerCooldown = 2.0f;
+				}
+			}			
 		}
 	} else {
 		octoman->Destroy();

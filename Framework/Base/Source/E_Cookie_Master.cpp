@@ -40,6 +40,7 @@ void E_Cookie_Master::Update(double deltaTime) {
 		float boundaryX = (GameData::GetInstance().worldSizeX + cookieMaster->GetComponent<Transform>().GetScale().x) * 0.3f;
 		float boundaryY = (GameData::GetInstance().worldSizeY + cookieMaster->GetComponent<Transform>().GetScale().y) * 0.5f;
 		cookieMaster->GetComponent<Transform>().SetPosition(0, -GameData::GetInstance().worldSizeY, 0);
+		cookieMaster->GetComponent<HealthComponent>().SetMaxHealth(1000);
 		cookieMaster->GetComponent<HealthComponent>().SetHealth(1000);
 	}
 	lifeTime -= deltaTime;

@@ -2,8 +2,10 @@
 #define SCENE_GJ_H
 
 #include "Scene.h"
+#include "TextureList.h"
 
 class GameObject;
+class Mesh;
 
 class SceneGJ : public Scene {
 
@@ -18,6 +20,10 @@ private:
 	GameObject* bananaIcon;
 	GameObject* meatballIcon;
 	GameObject* cookieIcon;
+
+	Mesh* hpBar;
+	Mesh* hpText;
+	TextureList textureList;
 
 	//Private Function(s)
 	void InitGameObjects();

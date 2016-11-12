@@ -76,7 +76,8 @@ void Application::InitScenes() {
 	SceneManager::GetInstance().CreateScene<SceneTest>("Test Scene");
  	SceneManager::GetInstance().CreateScene<SceneGJ>("Level 1");
 	SceneManager::GetInstance().CreateScene<SceneMainMenu>("Main Menu");
-	SceneManager::GetInstance().SetActiveScene("Main Menu");
+	//SceneManager::GetInstance().SetActiveScene("Main Menu");
+	SceneManager::GetInstance().SetActiveScene("Level 1");
 }
 
 void Application::Init() {

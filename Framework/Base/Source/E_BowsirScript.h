@@ -13,6 +13,8 @@ class E_BowsirScript : public Script {
 private:
 	bool initialised;
 	float lifeTime;
+	float hurtPlayerCooldown;
+	int damage;
 
 public:
 	//Variable(s)	

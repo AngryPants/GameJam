@@ -145,6 +145,9 @@
     <ClCompile Include="Source\B_Spinach_Script.cpp">
       <Filter>Source Files\Scripts\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Source\E_Script_DonkeyKing.cpp">
+      <Filter>Source Files\Scripts\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GraphicsManager.h">
@@ -345,6 +348,9 @@
     <ClInclude Include="Source\B_Spinach_Script.h">
       <Filter>Header Files\Script\Bullets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\E_Script_DonkeyKing.h">
+      <Filter>Header Files\Script\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -440,9 +446,6 @@
     <Filter Include="Header Files\Component\Collision">
       <UniqueIdentifier>{0d993572-6cbe-45de-be21-44dfd5044dc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameJam">
-      <UniqueIdentifier>{abc04086-6506-44ab-a901-13b4a9975820}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Component\Graphics">
       <UniqueIdentifier>{8f8f7d7b-0d02-4418-be21-fafb1e4cbdec}</UniqueIdentifier>
     </Filter>
@@ -475,6 +478,9 @@
     </Filter>
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{8020bce8-bbb6-4af1-b7c5-50ce94ae5721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameJam">
+      <UniqueIdentifier>{abc04086-6506-44ab-a901-13b4a9975820}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
