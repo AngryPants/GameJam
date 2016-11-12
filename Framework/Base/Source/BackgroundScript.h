@@ -14,7 +14,7 @@ public:
 
 	//Constructor(s) & Destructor
 	BackgroundScript() {
-		scrollSpeed = 0.4f;
+		scrollSpeed = 0.6f;
 		gameObject = nullptr;
 	}
 	virtual ~BackgroundScript() {}

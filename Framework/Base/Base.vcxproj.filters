@@ -136,6 +136,9 @@
     <ClCompile Include="Source\EnemySpawnerScript.cpp">
       <Filter>Source Files\Scripts\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SceneMainMenu.cpp">
+      <Filter>Source Files\GameJam</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GraphicsManager.h">
@@ -327,6 +330,9 @@
     <ClInclude Include="Source\EnemySpawnerScript.h">
       <Filter>Header Files\Script\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneMainMenu.h">
+      <Filter>Header Files\GameJam</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -446,9 +452,6 @@
     <Filter Include="Source Files\Scripts\Bullet">
       <UniqueIdentifier>{f0c169e9-398f-4bc0-9fc2-6f1270cc0b3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Scene">
-      <UniqueIdentifier>{8020bce8-bbb6-4af1-b7c5-50ce94ae5721}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Script\Enemy">
       <UniqueIdentifier>{aaf15e31-5cff-4eb3-a4eb-dd372bb82d1d}</UniqueIdentifier>
     </Filter>
@@ -457,6 +460,9 @@
     </Filter>
     <Filter Include="Source Files\GameJam">
       <UniqueIdentifier>{c7b50783-ecf2-4598-8e30-baf5a911300b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{8020bce8-bbb6-4af1-b7c5-50ce94ae5721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

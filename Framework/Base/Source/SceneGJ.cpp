@@ -34,7 +34,7 @@ void SceneGJ::InitGameObjects() {
 	camera->GetComponent<Transform>().SetRotation(0, 180, 0);
 	camera->GetComponent<Camera>().aspectRatio.Set(Application::GetInstance().GetWindowWidth(), Application::GetInstance().GetWindowHeight());
 
-	background = &GameObjectFactory::CreateBackground(name, "Level 1 Background", "Image//Game_Jam//Background//Water.tga");
+	background = &GameObjectFactory::CreateBackground(name, "Level 1 Background", "Image//Game_Jam//Background//Grass.tga");
 	background->GetComponent<Transform>().Scale(GameData::GetInstance().worldSizeX, GameData::GetInstance().worldSizeY, 1);
 
 	//Black Bars
@@ -88,8 +88,8 @@ void SceneGJ::Update(double deltaTime) {
 	CollisionSystem::GetInstance().CheckCollision(name, deltaTime);
 	GameObjectManager::GetInstance().UpdateScripts(name, deltaTime);
 	RenderSystem::GetInstance().Update(name, deltaTime);
-	cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
-	cout << "FPS: " << to_string(1.0/deltaTime) << endl;
+	//cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
+	//cout << "FPS: " << to_string(1.0/deltaTime) << endl;
 	//Close da app
 	if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
 		Application::GetInstance().Quit();

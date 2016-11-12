@@ -12,8 +12,6 @@ using std::bitset;
 //Some Example Controls
 enum INPUT_TYPE {
 	//Movement
-	INPUT_UP,
-	INPUT_DOWN,
 	INPUT_LEFT,
 	INPUT_RIGHT,
 	INPUT_FORWARD,
@@ -23,6 +21,7 @@ enum INPUT_TYPE {
 	//Others
 	INPUT_QUIT,
 	INPUT_RESET,
+	INPUT_SELECT,
 	
 	//Select Player Form
 	INPUT_SELECT_DEFAULT,

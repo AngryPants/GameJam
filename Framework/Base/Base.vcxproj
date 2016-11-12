@@ -44,6 +44,7 @@
     <ClCompile Include="Source\RenderHelper.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SceneGJ.cpp" />
+    <ClCompile Include="Source\SceneMainMenu.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\SceneTest.cpp" />
     <ClCompile Include="Source\shader.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\SceneEmpty.h" />
     <ClInclude Include="Source\SceneGJ.h" />
+    <ClInclude Include="Source\SceneMainMenu.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\SceneTest.h" />
     <ClInclude Include="Source\Script.h" />

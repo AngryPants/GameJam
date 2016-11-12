@@ -31,6 +31,7 @@
 #include "SceneTest.h"
 #include "SceneEmpty.h"
 #include "SceneGJ.h"
+#include "SceneMainMenu.h"
 
 GLFWwindow* m_window;
 const unsigned char maxFPS = 60; //Maximum FPS of this game.
@@ -73,8 +74,9 @@ void Application::InitScenes() {
 	//Add Scenes Here!
 	SceneManager::GetInstance().CreateScene<SceneEmpty>("Empty Scene");
 	SceneManager::GetInstance().CreateScene<SceneTest>("Test Scene");
-	SceneManager::GetInstance().CreateScene<SceneGJ>("Game Jam Level 1");
-	SceneManager::GetInstance().SetActiveScene("Game Jam Level 1");
+ 	SceneManager::GetInstance().CreateScene<SceneGJ>("Level 1");
+	SceneManager::GetInstance().CreateScene<SceneMainMenu>("Main Menu");
+	SceneManager::GetInstance().SetActiveScene("Main Menu");
 }
 
 void Application::Init() {
