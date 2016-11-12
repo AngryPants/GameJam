@@ -48,6 +48,13 @@ void SceneMainMenu::InitGameObjects() {
 	title->GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Title", "Image//Game_Jam//Menu//Title.tga");
 	title->GetComponent<MeshRenderer>().lightEnabled = false;
 
+	levelTitle = &GameObjectFactory::CreateEmpty(name);
+	levelTitle->AddComponent<Transform>().SetPosition(0, 8, 0);
+	levelTitle->GetComponent<Transform>().Scale(5, 1, 1);
+	levelTitle->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("LevelTitle");
+	levelTitle->GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("LevelTitle", "Image//Game_Jam//Background//level1.tga");
+	levelTitle->GetComponent<MeshRenderer>().lightEnabled = false;
+
 	//Black Bars
 	{
 		Vector3 scale(camera->GetComponent<Camera>().GetOrthoWidth() - (GameData::GetInstance().worldSizeX * 0.5f), GameData::GetInstance().worldSizeY, 1);
@@ -84,30 +91,50 @@ void SceneMainMenu::Init() {
 	keyDown[1] = false;
 
 	startGame = false;
-
-	AudioManager::GetInstance().PlayAudio2D("Audio//#Music//mainmenu.wav", true);
+	startAnim = false;
+	lvlTitleAnimTime = 6.0;
+	AudioManager::GetInstance().PlaySoleAudio2D("Audio//Music//mainmenu.wav", true);
 }
 
 void SceneMainMenu::Update(double deltaTime) {
 
-	if (startGame) {
-		bool switchScenes = true;
-		if (arrow->GetComponent<Transform>().GetPosition().x > -camera->GetComponent<Camera>().GetOrthoWidth()) {
-			arrow->GetComponent<Transform>().Translate(-5.0f * deltaTime, 0, 0);
-			switchScenes = false;
-		}
-		if (choices->GetComponent<Transform>().GetPosition().y > -camera->GetComponent<Camera>().GetOrthoSize() * 1.5f) {
-			choices->GetComponent<Transform>().Translate(0, -5.0f * deltaTime, 0);
-			switchScenes = false;
-		}
-		if (title->GetComponent<Transform>().GetPosition().y < camera->GetComponent<Camera>().GetOrthoSize() * 1.5f) {
-			title->GetComponent<Transform>().Translate(0, 5.0f * deltaTime, 0);
-			switchScenes = false;
+	if(startGame) {
+		static bool once = false;
+		if(!once) {
+			AudioManager::GetInstance().PlayAudio2D("Audio//Music//transformation.wav", false);
+			once = true;
 		}
 
+		static double animTime = 0.0;
+		animTime += deltaTime;
+
+		bool switchScenes = false;
+		if(animTime <= lvlTitleAnimTime / 2) {
+			if(levelTitle->GetComponent<Transform>().GetPosition().y > 3.5f);
+				levelTitle->GetComponent<Transform>().Translate(0, -deltaTime, 0);
+		}
+		else if (animTime < lvlTitleAnimTime) {
+				levelTitle->GetComponent<Transform>().Translate(0, deltaTime, 0);
+		}
+		else if (animTime >= lvlTitleAnimTime) {
+				switchScenes = true;
+		}
 		if (switchScenes) {
 			SceneManager::GetInstance().SetActiveScene("Level 1");
 		}
+	}
+
+	if (startAnim) {
+		if (arrow->GetComponent<Transform>().GetPosition().x > -camera->GetComponent<Camera>().GetOrthoWidth()) {
+			arrow->GetComponent<Transform>().Translate(-5.0f * deltaTime, 0, 0);
+		}
+		if (choices->GetComponent<Transform>().GetPosition().y > -camera->GetComponent<Camera>().GetOrthoSize() * 1.5f) {
+			choices->GetComponent<Transform>().Translate(0, -5.0f * deltaTime, 0);
+		}
+		if (title->GetComponent<Transform>().GetPosition().y < camera->GetComponent<Camera>().GetOrthoSize() * 1.5f) {
+			title->GetComponent<Transform>().Translate(0, 5.0f * deltaTime, 0);
+		}
+		startGame = true;
 	} else {
 		switch (currentState) {
 			case MENU_START: {
@@ -150,14 +177,28 @@ void SceneMainMenu::Update(double deltaTime) {
 			keyDown[1] = false;
 		}
 
+		static double timeDetect;
+		timeDetect += deltaTime;
+
 		if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_SELECT]) {
+			AudioManager::GetInstance().PlayAudio2D("Audio//Music//menuselect.wav", false);
 			switch (currentState) {
 				case MENU_START: {
-					startGame = true;
+					startAnim = true;
 					break;
 				}
 				case MENU_AUDIO: {
 					//Do Audio Studd
+					if(GameData::GetInstance().mute == false && timeDetect > 0.5) {
+						GameData::GetInstance().mute = true;
+						AudioManager::GetInstance().PauseAudioList(true);
+						timeDetect = 0.0;
+					}
+					else if(GameData::GetInstance().mute == true && timeDetect > 0.5) {
+						GameData::GetInstance().mute = false;
+						AudioManager::GetInstance().PauseAudioList(false);
+						timeDetect = 0.0;
+					}
 					break;
 				}
 				case MENU_QUIT: {

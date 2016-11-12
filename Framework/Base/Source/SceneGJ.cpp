@@ -9,6 +9,7 @@
 #include "GameObjectManager.h"
 #include "CollisionSystem.h"
 #include "GameData.h"
+#include "AudioManager.h"
 
 //Include Components
 #include "SpriteRenderer.h"
@@ -62,10 +63,21 @@ void SceneGJ::InitGameObjects() {
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(0.5);
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(5);
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(8);
-	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(12);
-	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(20);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(10);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(13);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(17);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(22);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(25);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(30);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(35);
 
-}
+	kkIcon = &GameObjectFactory::CreateEmpty(name, "KK Icon");
+	kkIcon->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("KK Icon");
+	kkIcon->GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("KK Icon", "Image//Game_Jam//Projectile//Projectile_KicKac.tga");
+	kkIcon->GetComponent<MeshRenderer>().lightEnabled = false;
+	kkIcon->AddComponent<Transform>().SetScale(Vector3(1, 1, 1));
+	kkIcon->GetComponent<Transform>().SetPosition(-10, 5, 2);
+}	
 
 void SceneGJ::Init() {
 	//Initialise some GraphicsManager stuff.
@@ -81,6 +93,7 @@ void SceneGJ::Init() {
 
 	//Initialise the GameObjects.
 	InitGameObjects();
+	AudioManager::GetInstance().PlaySoleAudio2D("Audio//Music//level1.wav", true);
 }
 
 void SceneGJ::Update(double deltaTime) {	

@@ -20,7 +20,11 @@ public:
 	GameObject* arrow;
 	GameObject* choices;
 	GameObject* title;
+	GameObject* levelTitle;
+
+	double lvlTitleAnimTime;
 	bool startGame;
+	bool startAnim;
 
 	MENU_OPTIONS currentState;
 	bool keyDown[2];

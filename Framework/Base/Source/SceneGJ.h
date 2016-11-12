@@ -14,6 +14,11 @@ private:
 	GameObject* background;
 	GameObject* spawner;
 
+	GameObject* kkIcon;
+	GameObject* bananaIcon;
+	GameObject* meatballIcon;
+	GameObject* cookieIcon;
+
 	//Private Function(s)
 	void InitGameObjects();
 

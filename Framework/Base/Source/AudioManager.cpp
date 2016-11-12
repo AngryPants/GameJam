@@ -1,4 +1,5 @@
 #include "AudioManager.h"
+#include "GameData.h"
 
 AudioManager::AudioManager() {
 
@@ -26,16 +27,20 @@ void AudioManager::Update() {
 
 }
 
+bool AudioManager::PauseAudioList(bool state) {
+	audioEngine->setAllSoundsPaused(state);
+	return true;
+}
+
 bool AudioManager::PlayAudio2D(const string& audioFile, bool looped, float volume) {
 
-	if (audioEngine->isCurrentlyPlaying(audioFile.c_str()))
-		return true;
+		if (audioEngine->isCurrentlyPlaying(audioFile.c_str()))
+			return true;
 	
-	ISound* soundPtr = audioEngine->play2D(audioFile.c_str(), looped);
-	if (audioList.find(soundPtr) != audioList.end()) {
-		audioList.insert(soundPtr);
-	}
-
+		ISound* soundPtr = audioEngine->play2D(audioFile.c_str(), looped);
+		if (audioList.find(soundPtr) != audioList.end()) {
+			audioList.insert(soundPtr);
+		}
 	return true;
 }
 
@@ -49,18 +54,9 @@ bool AudioManager::PlaySoleAudio2D(const string& audioFile, bool looped, float v
 		audioEngine->setAllSoundsPaused();
 		audioEngine->play2D(audioFile.c_str(), looped);
 	}
-	return true;
 }
 
 bool AudioManager::ClearAudioList() {
-
-	set<ISound*>::iterator iter = audioList.begin();
-	while (audioList.size() > 0) {
-		if (*iter) {
-			(*iter)->drop();
-		}
-		iter = audioList.erase(iter);
-	}
 
 	audioEngine->removeAllSoundSources();
 

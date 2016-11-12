@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "SphereCollider.h"
 #include "GameObject.h"
+#include "AudioManager.h"
 #include <set>
 
 /*float CollisionSystem::CircleCircle(Vector2 circlePositionA, Vector2 circlePositionB, float circleRadiusA, float circleRadiusB, Vector2 circleVelocityA, Vector2 circleVelocityB, bool directionCheck)
@@ -60,6 +61,7 @@ void CollisionSystem::CheckCollision(const string& space, double deltaTime) {
 			float combinedRadSq = (sphereCollider->GetRadius() + sphereCollider2->GetRadius()) * (sphereCollider->GetRadius() + sphereCollider2->GetRadius());
 
 			if (lengthSquared < combinedRadSq) {
+				AudioManager::GetInstance().PlayAudio2D("Audio//Music//gethit.wav", false);
 				sphereCollider->info.Collide(sphereCollider2->GetGameObject(), transformOne.GetPosition());
 				sphereCollider2->info.Collide(sphereCollider->GetGameObject(), transformTwo.GetPosition());
 			}

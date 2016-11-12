@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "MeshBuilder.h"
 #include "GameData.h"
+#include "AudioManager.h"
 
 //Constructor(s) & Destructor
 PlayerControlScript::PlayerControlScript() {
@@ -117,6 +118,7 @@ void PlayerControlScript::Update(double deltaTime) {
 	//Shooting
 	timeToFire = Math::Max(0.0, timeToFire - deltaTime);
 	if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_SHOOT] && timeToFire <= 0.0) {
+		AudioManager::GetInstance().PlayAudio2D("Audio//Music//shoot.wav", false);
 		switch (currentForm) {
 			case PLAYER_FORM::FORM_DEFAULT:
 				ShootKicKac();
