@@ -28,12 +28,29 @@ void AudioManager::Update() {
 
 bool AudioManager::PlayAudio2D(const string& audioFile, bool looped, float volume) {
 
+	if (audioEngine->isCurrentlyPlaying(audioFile.c_str()))
+		return true;
+	
 	ISound* soundPtr = audioEngine->play2D(audioFile.c_str(), looped, false, true);
 	soundPtr->setVolume(volume);
-	audioList.insert(soundPtr);
-
+	if (audioList.find(soundPtr) != audioList.end()) {
+		audioList.insert(soundPtr);
+	}
+	std::cout << audioList.size() << std::endl;
 	return true;
+}
 
+bool AudioManager::PlaySoleAudio2D(const string& audioFile, bool looped, float volume) {
+
+	if (audioEngine->isCurrentlyPlaying(audioFile.c_str())) {
+		return true;
+	}
+	else
+	{
+		audioEngine->setAllSoundsPaused();
+		audioEngine->play2D(audioFile.c_str(), looped);
+	}
+	return true;
 }
 
 bool AudioManager::ClearAudioList() {
