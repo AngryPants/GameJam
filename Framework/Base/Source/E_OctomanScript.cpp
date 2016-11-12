@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "MeshBuilder.h"
 #include "MyMath.h"
+#include "GameData.h"
 
 //Constructor(s) & Destructor
 E_OctomanScript::E_OctomanScript() {
@@ -31,20 +32,28 @@ void E_OctomanScript::Update(double deltaTime) {
 	}
 	if (initialised == false) {
 		initialised = true;
-		float boundaryX = 5.0f * 0.65f;
-		float boundaryY = 5.0f * 0.8f;
+		float boundaryX = (GameData::GetInstance().worldSizeX + octoman->GetComponent<Transform>().GetScale().x) * 0.3f;
+		float boundaryY = (GameData::GetInstance().worldSizeY + octoman->GetComponent<Transform>().GetScale().y) * 0.5f;
 		octoman->GetComponent<Transform>().SetRotation(0, 0, -90);
-		octoman->GetComponent<Transform>().SetPosition(Math::RandFloatMinMax(-boundaryX, boundaryX), boundaryY + 0.5f, 0);
+		octoman->GetComponent<Transform>().SetPosition(Math::RandFloatMinMax(-boundaryX, boundaryX), boundaryY + (octoman->GetComponent<Transform>().GetScale().y * 0.5f), 0);
 		octoman->GetComponent<HealthComponent>().SetHealth(10);
 	}
 	if (lifeTime > 0.0f) {
-		while (moveRotation > 180.f) {
-			moveRotation -= 180.0f;
-		}	
+		while (moveRotation > 360) {
+			moveRotation -= 360.0f;
+		}
 		lifeTime -= deltaTime;
 		moveRotation += (float)deltaTime * 2.f;	
 		Transform& enemyTransform = octoman->GetComponent<Transform>();
 		enemyTransform.Translate(cosf(moveRotation) * deltaTime, -movementSpeed * deltaTime, 0);
+
+		float boundaryX = (GameData::GetInstance().worldSizeX - octoman->GetComponent<Transform>().GetScale().x) * 0.5f;
+		float boundaryY = (GameData::GetInstance().worldSizeY + octoman->GetComponent<Transform>().GetScale().y) * 0.5f;
+		if (enemyTransform.GetPosition().x > boundaryX) {
+			enemyTransform.SetPositionX(-boundaryX);
+		} else if (enemyTransform.GetPosition().x < -boundaryX) {
+			enemyTransform.SetPositionX(boundaryX);
+		}
 
 		if (octoman->GetComponent<HealthComponent>().IsAlive() == false) {
 			octoman->Destroy();

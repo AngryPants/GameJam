@@ -56,6 +56,15 @@ void SceneGJ::InitGameObjects() {
 
 	GameObjectFactory::CreateBowsir(name, player);
 	GameObjectFactory::CreateOctoman(name);
+
+	spawner = &GameObjectFactory::CreateSpawner(name, "Spawner", player);
+	EnemySpawnerScript* spawnerScript = static_cast<EnemySpawnerScript*>(spawner->scripts[0]);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(0.5);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(5);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(8);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(12);
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(20);
+
 }
 
 void SceneGJ::Init() {

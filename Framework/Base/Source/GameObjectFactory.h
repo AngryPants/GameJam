@@ -16,6 +16,7 @@
 #include "B_Meatball_Script.h"
 #include "E_BowsirScript.h"
 #include "E_OctomanScript.h"
+#include "EnemySpawnerScript.h"
 
 //Include Components
 #include "Camera.h"
@@ -188,6 +189,16 @@ public:
 		BackgroundScript* script = new BackgroundScript();
 		go.scripts[0] = script;
 		script->gameObject = &go;
+
+		return go;
+	}
+
+	static GameObject& CreateSpawner(const string& space, const string& name = "Spawner", GameObject* player = nullptr) {
+		GameObject& go = GameObjectFactory::CreateEmpty(space);
+		EnemySpawnerScript* script = new EnemySpawnerScript();
+		script->spawner = &go;
+		script->player = player;
+		go.scripts[0] = script;
 
 		return go;
 	}

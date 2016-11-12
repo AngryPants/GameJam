@@ -12,6 +12,7 @@ private:
 	GameObject* camera;
 	GameObject* player;
 	GameObject* background;
+	GameObject* spawner;
 
 	//Private Function(s)
 	void InitGameObjects();

@@ -133,6 +133,9 @@
     <ClCompile Include="Source\E_OctomanScript.cpp">
       <Filter>Source Files\Scripts\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EnemySpawnerScript.cpp">
+      <Filter>Source Files\Scripts\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GraphicsManager.h">

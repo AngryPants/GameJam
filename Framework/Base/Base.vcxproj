@@ -48,6 +48,7 @@
     <ClCompile Include="Source\SceneTest.cpp" />
     <ClCompile Include="Source\shader.cpp" />
     <ClCompile Include="Source\ShaderProgram.cpp" />
+    <ClCompile Include="Source\EnemySpawnerScript.cpp" />
     <ClCompile Include="Source\SphereCollider.cpp" />
     <ClCompile Include="Source\SpriteAnimation.cpp" />
     <ClCompile Include="Source\SpriteRenderer.cpp" />
