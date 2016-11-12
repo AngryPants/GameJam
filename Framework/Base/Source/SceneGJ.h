@@ -19,6 +19,9 @@ private:
 	GameObject* meatballIcon;
 	GameObject* cookieIcon;
 
+	GameObject* index[4];
+	GameObject* scoreText;
+	GameObject* score;
 	//Private Function(s)
 	void InitGameObjects();
 

@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "SphereCollider.h"
 #include "HealthComponent.h"
+#include "GameData.h"
 
 void B_Meatball_Script::Update(double deltaTime) {
 	if (bullet == nullptr) {
@@ -22,6 +23,9 @@ void B_Meatball_Script::Update(double deltaTime) {
 			GameObject* go = *vecIter;
 			if (go->tag == "Enemy" && go->HasComponent<HealthComponent>() && go->GetComponent<HealthComponent>().IsAlive()) {
 				go->GetComponent<HealthComponent>().TakeDamage(damage);
+				if (go->GetComponent<HealthComponent>().GetHealth() <= 0) {
+					GameData::GetInstance().score += 10;
+				}
 				bullet->Destroy();
 			}
 		}

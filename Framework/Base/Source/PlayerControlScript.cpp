@@ -125,20 +125,18 @@ void PlayerControlScript::Update(double deltaTime) {
 				fireRate = 3.0f;
 				break;
 			case PLAYER_FORM::FORM_OCTOMAN:
-				ShootKicKac();
-				fireRate = 3.0f;
-				break;
-			case PLAYER_FORM::FORM_DONKEY_KING:
 				ShootBanana();
 				fireRate = 2.0f;
 				break;
-			case PLAYER_FORM::FORM_COOKIE_MASTER:
+			case PLAYER_FORM::FORM_DONKEY_KING:
 				ShootCookie();
 				fireRate = 1.5;
 				break;
-			case PLAYER_FORM::FORM_BOWSIR:
+			case PLAYER_FORM::FORM_COOKIE_MASTER:
 				ShootMeatball();
 				fireRate = 7.0f;
+				break;
+			case PLAYER_FORM::FORM_BOWSIR:
 				break;
 		}		
 		timeToFire = 1.0 / fireRate;
