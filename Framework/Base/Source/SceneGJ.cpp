@@ -71,6 +71,8 @@ void SceneGJ::InitGameObjects() {
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(30);
 	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_OCTOMAN].push_back(35);
 
+	spawnerScript->spawnTimes[EnemySpawnerScript::ENEMY_COOKIE_MASTER].push_back(5);
+
 	kkIcon = &GameObjectFactory::CreateEmpty(name, "KK Icon");
 	kkIcon->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("KK Icon");
 	kkIcon->GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("KK Icon", "Image//Game_Jam//Projectile//Projectile_KicKac.tga");

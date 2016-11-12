@@ -19,6 +19,7 @@
     <ClCompile Include="Source\B_Cookie_Script.cpp" />
     <ClCompile Include="Source\B_KicKac_Script.cpp" />
     <ClCompile Include="Source\B_Meatball_Script.cpp" />
+    <ClCompile Include="Source\B_Spinach_Script.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Source\Controller_Keyboard.cpp" />
     <ClCompile Include="Source\Controller_Mouse.cpp" />
     <ClCompile Include="Source\E_BowsirScript.cpp" />
+    <ClCompile Include="Source\E_Cookie_Master.cpp" />
     <ClCompile Include="Source\E_OctomanScript.cpp" />
     <ClCompile Include="Source\GameObjectManager.cpp" />
     <ClCompile Include="Source\GraphicsManager.cpp" />
@@ -67,6 +69,7 @@
     <ClInclude Include="Source\B_Cookie_Script.h" />
     <ClInclude Include="Source\B_KicKac_Script.h" />
     <ClInclude Include="Source\B_Meatball_Script.h" />
+    <ClInclude Include="Source\B_Spinach_Script.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\CollisionSystem.h" />
@@ -75,6 +78,7 @@
     <ClInclude Include="Source\CubeScript.h" />
     <ClInclude Include="Source\EnemySpawnerScript.h" />
     <ClInclude Include="Source\E_BowsirScript.h" />
+    <ClInclude Include="Source\E_CookieMaster.h" />
     <ClInclude Include="Source\E_OctomanScript.h" />
     <ClInclude Include="Source\GameData.h" />
     <ClInclude Include="Source\PlayerControlScript.h" />

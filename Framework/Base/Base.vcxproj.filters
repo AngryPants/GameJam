@@ -139,6 +139,12 @@
     <ClCompile Include="Source\SceneMainMenu.cpp">
       <Filter>Source Files\GameJam</Filter>
     </ClCompile>
+    <ClCompile Include="Source\E_Cookie_Master.cpp">
+      <Filter>Source Files\Scripts\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\B_Spinach_Script.cpp">
+      <Filter>Source Files\Scripts\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GraphicsManager.h">
@@ -332,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="Source\SceneMainMenu.h">
       <Filter>Header Files\GameJam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\E_CookieMaster.h">
+      <Filter>Header Files\Script\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\B_Spinach_Script.h">
+      <Filter>Header Files\Script\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
