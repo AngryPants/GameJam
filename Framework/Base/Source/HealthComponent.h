@@ -15,10 +15,10 @@ public:
 	HealthComponent(GameObject& gameObject) : Component("Health Component", gameObject) {
 		hp = 1;
 	}
-	virtual ~HealthComponent();
+	virtual ~HealthComponent() {}
 
 	//Interface Function(s)
-	bool isAlive() {
+	bool IsAlive() {
 		return hp > 0;
 	}
 

@@ -20,6 +20,7 @@
 
 #include "RenderSystem.h"
 #include "IDGenerator.h"
+#include "GameData.h"
 
 //Include Controller(s)
 #include "Controller_Keyboard.h"

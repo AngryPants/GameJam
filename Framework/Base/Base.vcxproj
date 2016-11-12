@@ -71,8 +71,10 @@
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\ComponentManager.h" />
     <ClInclude Include="Source\CubeScript.h" />
+    <ClInclude Include="Source\EnemySpawnerScript.h" />
     <ClInclude Include="Source\E_BowsirScript.h" />
     <ClInclude Include="Source\E_OctomanScript.h" />
+    <ClInclude Include="Source\GameData.h" />
     <ClInclude Include="Source\PlayerControlScript.h" />
     <ClInclude Include="Source\HealthComponent.h" />
     <ClInclude Include="Source\IDGenerator.h" />

@@ -2,6 +2,7 @@
 #define E_OCTOMANSCRIPT_H
 
 #include "Script.h"
+#include "Vector3.h"
 #include <vector>
 
 using std::vector;
@@ -10,15 +11,18 @@ class GameObject;
 
 class E_OctomanScript : public Script {
 
-public:
-	//Variable(s)
+private:
+	//Movement
 	float movementSpeed;
 	float moveRotation;
-	bool reseted;
-	bool startCounting;
-	vector<double>v_timer;
-	vector<double>::iterator vt;
 
+	//Spawning
+	float lifeTime;
+	bool initialised;
+
+public:
+	//Variable(s)	
+	//vector<Vector3>waypoints;
 	GameObject* octoman;
 
 	//Constructor(s) & Destructor
@@ -27,8 +31,6 @@ public:
 
 	//Interface Function(s)
 	virtual void Update(const double deltaTime);
-	void Reset();
-	void Deactivate();
 
 };
 

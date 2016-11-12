@@ -12,11 +12,13 @@ public:
 	GameObject* bullet;
 	float speed;
 	float lifeTime;
+	int damage;
 
 	//Constructor(s) & Destructor
 	B_Meatball_Script() {
 		lifeTime = 5.0f;
 		speed = 7.0f;
+		damage = 1;
 	}
 	virtual ~B_Meatball_Script() {}
 

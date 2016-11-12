@@ -12,12 +12,14 @@ public:
 	GameObject* bullet;
 	float speed;
 	float lifeTime;
+	int damage;
 
 	//Constructor(s) & Destructor
 	B_Cookie_Script() {
 		lifeTime = 5.0f;
 		speed = 10.0f;
 		bullet = nullptr;
+		damage = 3;
 	}
 	virtual ~B_Cookie_Script() {}
 

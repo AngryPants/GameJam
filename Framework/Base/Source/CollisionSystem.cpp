@@ -48,7 +48,7 @@ void CollisionSystem::CheckCollision(const string& space, double deltaTime) {
 		for (set<Component*>::iterator setIterTwo = next(setIter, 1); setIterTwo != sphereColliders.end(); ++setIterTwo) {
 			SphereCollider* sphereCollider2 = static_cast<SphereCollider*>(*setIterTwo);
 
-			if (sphereCollider2->isActive && sphereCollider2->GetGameObject().HasComponent<Transform>()) {
+			if (!sphereCollider2->isActive || sphereCollider2->GetGameObject().HasComponent<Transform>() == false) {
 				continue;
 			}
 			// Collision check
@@ -57,11 +57,11 @@ void CollisionSystem::CheckCollision(const string& space, double deltaTime) {
 			Transform& transformTwo = sphereCollider2->GetGameObject().GetComponent<Transform>();
 
 			float lengthSquared = (transformOne.GetPosition() - transformTwo.GetPosition()).LengthSquared();
-			float combinedRadSq = (transformOne.GetScale().x + transformTwo.GetScale().x) * (transformOne.GetScale().x + transformTwo.GetScale().x);
+			float combinedRadSq = (sphereCollider->GetRadius() + sphereCollider2->GetRadius()) * (sphereCollider->GetRadius() + sphereCollider2->GetRadius());
 
 			if (lengthSquared < combinedRadSq) {
-				sphereCollider->info.Collide(sphereCollider->GetGameObject(), transformOne.GetPosition());
-				sphereCollider2->info.Collide(sphereCollider2->GetGameObject(), transformTwo.GetPosition());
+				sphereCollider->info.Collide(sphereCollider2->GetGameObject(), transformOne.GetPosition());
+				sphereCollider2->info.Collide(sphereCollider->GetGameObject(), transformTwo.GetPosition());
 			}
 			//
 			// 2
@@ -82,11 +82,6 @@ void CollisionSystem::Reset(const string& space) {
 	// First loop to check first GameObject
 	for (set<Component*>::iterator setIter = sphereColliders.begin(); setIter != sphereColliders.end(); ++setIter) {
 		SphereCollider* sphereCollider = static_cast<SphereCollider*>(*setIter);
-
-		if (!sphereCollider->isActive) {
-			continue;
-		}
-
 		sphereCollider->info.Reset();
 	}
 }

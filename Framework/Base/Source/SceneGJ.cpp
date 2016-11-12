@@ -7,6 +7,8 @@
 #include "GameObjectFactory.h"
 #include "MeshBuilder.h"
 #include "GameObjectManager.h"
+#include "CollisionSystem.h"
+#include "GameData.h"
 
 //Include Components
 #include "SpriteRenderer.h"
@@ -24,21 +26,30 @@ SceneGJ::~SceneGJ() {
 
 //Virtual Function(s)
 void SceneGJ::InitGameObjects() {
+	
 	camera = &GameObjectFactory::CreateCamera(name);
 	camera->GetComponent<Camera>().SetOrtho();
+	camera->GetComponent<Camera>().SetOrthoSize(GameData::GetInstance().worldSizeY * 0.5f);
 	camera->GetComponent<Transform>().SetPosition(0, 0, 5);
 	camera->GetComponent<Transform>().SetRotation(0, 180, 0);
 	camera->GetComponent<Camera>().aspectRatio.Set(Application::GetInstance().GetWindowWidth(), Application::GetInstance().GetWindowHeight());
 
-	background = &GameObjectFactory::CreateEmpty(name);
-	background->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Level 1 Background");
-	background->GetComponent<MeshRenderer>().lightEnabled = false;
-	background->GetComponent<MeshRenderer>().textureList.textureArray[0] = TextureManager::GetInstance().AddTexture("Level 1 Background", "Image//Default//Texture_Test.tga");
-	background->AddComponent<Transform>().SetPosition(0, 0, -10);
-	background->GetComponent<Transform>().Scale(camera->GetComponent<Camera>().GetOrthoSize() * 0.75f * 3.0f, camera->GetComponent<Camera>().GetOrthoSize() * 2.0f, 1);
-	BackgroundScript* backgroundScript = new BackgroundScript();
-	background->scripts[0] = backgroundScript;
-	backgroundScript->gameObject = background;
+	background = &GameObjectFactory::CreateBackground(name, "Level 1 Background", "Image//Game_Jam//Background//Water.tga");
+	background->GetComponent<Transform>().Scale(GameData::GetInstance().worldSizeX, GameData::GetInstance().worldSizeY, 1);
+
+	//Black Bars
+	{
+		Vector3 scale(camera->GetComponent<Camera>().GetOrthoWidth() - (GameData::GetInstance().worldSizeX * 0.5f), GameData::GetInstance().worldSizeY, 1);
+		GameObject* bar1 = &GameObjectFactory::CreateEmpty(name, "Black Bar");
+		bar1->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Black Bar", Color(0, 0, 0), 1);		
+		bar1->AddComponent<Transform>().SetScale(scale);
+		bar1->GetComponent<Transform>().SetPosition(-0.5f * (scale.x + GameData::GetInstance().worldSizeX), 0, 1);
+
+		GameObject* bar2 = &GameObjectFactory::CreateEmpty(name, "Black Bar");
+		bar2->AddComponent<MeshRenderer>().mesh = MeshBuilder::GetInstance().GenerateQuad("Black Bar", Color(0, 0, 0), 1);
+		bar2->AddComponent<Transform>().SetScale(scale);
+		bar2->GetComponent<Transform>().SetPosition(0.5f * (scale.x + GameData::GetInstance().worldSizeX), 0, 1);
+	}
 
 	player = &GameObjectFactory::CreatePlayer(name);
 	player->GetComponent<Transform>().SetPosition(0, -5, 0);
@@ -63,14 +74,17 @@ void SceneGJ::Init() {
 	InitGameObjects();
 }
 
-void SceneGJ::Update(double deltaTime) {
-	GameObjectManager::GetInstance().UpdateScripts(name, deltaTime);	
+void SceneGJ::Update(double deltaTime) {	
+	CollisionSystem::GetInstance().Reset(name);
+	CollisionSystem::GetInstance().CheckCollision(name, deltaTime);
+	GameObjectManager::GetInstance().UpdateScripts(name, deltaTime);
 	RenderSystem::GetInstance().Update(name, deltaTime);
-	//cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
+	cout << "Number of GameObjects: " << GameObjectManager::GetInstance().GetNumGameObjects(name) << endl;
+	cout << "FPS: " << to_string(1.0/deltaTime) << endl;
 	//Close da app
 	if (InputManager::GetInstance().GetInputInfo().keyDown[INPUT_QUIT]) {
 		Application::GetInstance().Quit();
-	}	
+	}
 }
 
 void SceneGJ::Render() {

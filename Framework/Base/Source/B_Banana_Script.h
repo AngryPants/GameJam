@@ -14,6 +14,7 @@ public:
 	float speed;
 	float positionOffset;
 	float scaleIncrease;
+	int damage;
 
 	//Constructor(s) & Destructor
 	B_Banana_Script() {
@@ -22,6 +23,7 @@ public:
 		speed = 4.0f;
 		positionOffset = 0.0f;
 		scaleIncrease = 0.0f;
+		damage = 5;
 	}
 	virtual ~B_Banana_Script() {}
 

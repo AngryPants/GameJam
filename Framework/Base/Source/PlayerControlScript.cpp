@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "Application.h"
 #include "MeshBuilder.h"
+#include "GameData.h"
 
 //Constructor(s) & Destructor
 PlayerControlScript::PlayerControlScript() {
@@ -82,15 +83,15 @@ void PlayerControlScript::Update(double deltaTime) {
 	}
 
 	//Bounds Checking
-	float boundaryX = 5.2f;
-	float boundaryY = 5.0f * 0.8f;
-	if (playerTransform.GetPosition().x < -boundaryX) {		
+	float boundaryX = (GameData::GetInstance().worldSizeX - player->GetComponent<Transform>().GetScale().x) * 0.5f;
+	float boundaryY = (GameData::GetInstance().worldSizeY - player->GetComponent<Transform>().GetScale().y) * 0.5f;
+	if (playerTransform.GetPosition().x < -boundaryX) {
 		playerTransform.SetPosition(-boundaryX, playerTransform.GetPosition().y, playerTransform.GetPosition().z);
 	} else if (playerTransform.GetPosition().x > boundaryX) {
 		playerTransform.SetPosition(boundaryX, playerTransform.GetPosition().y, playerTransform.GetPosition().z);
 	}
 
-	if (playerTransform.GetPosition().y > boundaryY) {
+	if (playerTransform.GetPosition().y > boundaryY * 0.8f) {
 		playerTransform.SetPosition(playerTransform.GetPosition().x, boundaryY, playerTransform.GetPosition().z);
 	} else if (playerTransform.GetPosition().y < -boundaryY) {
 		playerTransform.SetPosition(playerTransform.GetPosition().x, -boundaryY, playerTransform.GetPosition().z);

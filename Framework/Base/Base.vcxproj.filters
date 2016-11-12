@@ -318,6 +318,12 @@
     <ClInclude Include="Source\E_OctomanScript.h">
       <Filter>Header Files\Script\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GameData.h">
+      <Filter>Header Files\GameJam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemySpawnerScript.h">
+      <Filter>Header Files\Script\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

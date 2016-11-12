@@ -12,12 +12,14 @@ public:
 	GameObject* bullet;
 	float lifeTime;
 	float speed;
+	int damage;
 
 	//Constructor(s) & Destructor
 	B_KicKac_Script() {
 		bullet = nullptr;
 		lifeTime = 5.0f;
 		speed = 7.0f;
+		damage = 2;
 	}
 	virtual ~B_KicKac_Script() {}
 

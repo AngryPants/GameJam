@@ -10,9 +10,11 @@ class BackgroundScript : public Script {
 public:
 	//Variable(s)
 	GameObject* gameObject;
+	float scrollSpeed;
 
 	//Constructor(s) & Destructor
 	BackgroundScript() {
+		scrollSpeed = 0.4f;
 		gameObject = nullptr;
 	}
 	virtual ~BackgroundScript() {}

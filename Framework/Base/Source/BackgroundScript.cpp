@@ -9,7 +9,7 @@ void BackgroundScript::Update(double deltaTime) {
 	if (gameObject->GetComponent<MeshRenderer>().mesh == nullptr) {
 		return;
 	}
-	gameObject->GetComponent<MeshRenderer>().mesh->textureOffset[1] += static_cast<float>(deltaTime);
+	gameObject->GetComponent<MeshRenderer>().mesh->textureOffset[1] += static_cast<float>(deltaTime) * scrollSpeed;
 	while (gameObject->GetComponent<MeshRenderer>().mesh->textureOffset[1] > 1.0f) {
 		gameObject->GetComponent<MeshRenderer>().mesh->textureOffset[1] -= 1.0f;
 	}

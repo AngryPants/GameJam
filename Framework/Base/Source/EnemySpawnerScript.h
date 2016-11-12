@@ -1,0 +1,4 @@
+#ifndef ENEMY_SPAWNNER_SCRIPT_H
+#define ENEMY_SPAWNNER_SCRIPT_H
+
+#endif

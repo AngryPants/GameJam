@@ -10,16 +10,16 @@ class GameObject;
 
 class E_BowsirScript : public Script {
 
+private:
+	bool initialised;
+	float lifeTime;
+
 public:
 	//Variable(s)	
 	GameObject* bowsir;
 	GameObject* player;
 	float movementSpeed;
 	Vector3 target;
-	bool reseted;
-	bool startCounting;
-	vector<double>v_timer;
-	vector<double>::iterator vt;
 
 	//Constructor(s) & Destructor
 	E_BowsirScript();
@@ -27,8 +27,6 @@ public:
 
 	//Interface Function(s)
 	virtual void Update(const double deltaTime);
-	void Reset();
-	void Deactivate();
 };
 
 #endif

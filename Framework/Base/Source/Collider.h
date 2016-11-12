@@ -27,9 +27,9 @@ public:
 	//Constructor(s) & Destructor
 	CollisionInfo() {
 		gameObjects.clear();
-		previousState = false;
-		currentState = false;
 		collisionPoint.clear();
+		previousState = false;
+		currentState = false;		
 	}
 	virtual ~CollisionInfo() {}
 
